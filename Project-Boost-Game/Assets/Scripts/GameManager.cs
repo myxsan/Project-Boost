@@ -5,28 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    Movement movement;
+    Rigidbody playerRigidbody;
     [SerializeField] float levelResetDelay = 0.7f;
     [SerializeField] float levelLoadDelay = 0.2f;
 
     private void Awake() {
         DontDestroyOnLoad(transform.gameObject);
+        movement = GameObject.Find("Rocket").GetComponent<Movement>();
     }
     public void ResetLevel()
     {
-        Invoke("InvokeReset",levelResetDelay);
+        Invoke("ResetScene",levelResetDelay);
+        
+        FindObjectOfType<Movement>().enabled = false;
+        GameObject.Find("Rocket").GetComponent<Rigidbody>().useGravity = false;
+        GameObject.Find("Rocket").GetComponent<AudioSource>().enabled = false;
     }
 
-    void InvokeReset()
+    void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadNextLevel()
     {
-        Invoke("InvokeLoad",levelLoadDelay);
+        Invoke("LevelLoad",levelLoadDelay);
     }
 
-    void InvokeLoad()
+    void LevelLoad()
     {
         int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextLevelIndex == SceneManager.sceneCountInBuildSettings)
