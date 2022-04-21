@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    GameManager gameManager;
+    private void Awake() {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
     private void OnCollisionEnter(Collision other)
     {
         switch (other.gameObject.tag)
@@ -14,17 +18,18 @@ public class CollisionHandler : MonoBehaviour
                 break;
             case "LandingPad":
                 Debug.Log("You are late...");
+                gameManager.LoadNextLevel();
                 break;
             case "Fuel":
                 Debug.Log("That one felt good");
                 break;
             case "Obstacle":
                 Debug.Log("You bloody, just try to be nice. OK?");
-                SceneManager.LoadScene(0);
+                gameManager.ResetLevel();
                 break;
             default:
                 Debug.Log("Hey I am here!!");
-                SceneManager.LoadScene(0);
+                gameManager.ResetLevel();
                 break;
         }
     }
