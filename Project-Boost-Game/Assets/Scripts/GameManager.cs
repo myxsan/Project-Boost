@@ -7,30 +7,33 @@ public class GameManager : MonoBehaviour
 {
     Movement movement;
     Rigidbody playerRigidbody;
+    [Header("Delay Amounts")]
     [SerializeField] float levelResetDelay = 0.7f;
     [SerializeField] float levelLoadDelay = 0.2f;
+
 
     private void Awake() {
         DontDestroyOnLoad(transform.gameObject);
         movement = GameObject.Find("Rocket").GetComponent<Movement>();
     }
-    public void ResetLevel()
+    public void StartResetLevel()
     {
-        Invoke("ResetScene",levelResetDelay);
-        
+        Invoke("ResetLevel",levelResetDelay);
         FindObjectOfType<Movement>().enabled = false;
-        GameObject.Find("Rocket").GetComponent<Rigidbody>().useGravity = false;
-        //GameObject.Find("Rocket").GetComponent<AudioSource>().enabled = false;
+        GameObject.Find("Rocket").GetComponent<Rigidbody>().useGravity = false;        
     }
 
-    void ResetScene()
+    void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadNextLevel()
     {
+        
         Invoke("LevelLoad",levelLoadDelay);
+        FindObjectOfType<Movement>().enabled = false;
+        GameObject.Find("Rocket").GetComponent<Rigidbody>().useGravity = false;
     }
 
     void LevelLoad()

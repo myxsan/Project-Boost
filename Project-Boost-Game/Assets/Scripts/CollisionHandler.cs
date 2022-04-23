@@ -6,12 +6,19 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     GameManager gameManager;
+    [Header("Audio")]
+    [SerializeField] AudioClip crashSFX;
+    [SerializeField] AudioClip landingPadSFX;
     PlayerSFXController playerSFXController;
     AudioSource audioSource;
+
+
+    bool isAbleToTransition = true;
+
     private void Awake() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        audioSource = GetComponent<AudioSource>();
-        playerSFXController = GetComponent<PlayerSFXController>();
+        audioSource = GameObject.Find("Rocket").GetComponent<AudioSource>();
+        playerSFXController = GameObject.Find("Rocket").GetComponent<PlayerSFXController>();
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -20,18 +27,31 @@ public class CollisionHandler : MonoBehaviour
             case "LaunchPad":
                 Debug.Log("Let's gooo!");
                 break;
+
             case "LandingPad":
                 Debug.Log("You are late...");
-                audioSource.PlayOneShot(playerSFXController.landingPad);
-                gameManager.LoadNextLevel();
+
+                if(isAbleToTransition)
+                {
+                    gameManager.LoadNextLevel();
+                    audioSource.PlayOneShot(landingPadSFX);
+                    isAbleToTransition = false;
+                }
                 break;
+
             case "Fuel":
                 Debug.Log("That one felt good");
                 break;
+
             default:
                 Debug.Log("Hey I am here!!");
-                gameManager.ResetLevel();
-                audioSource.PlayOneShot(playerSFXController.crashToObstacle);
+
+                if(isAbleToTransition)
+                {
+                    gameManager.StartResetLevel();
+                    audioSource.PlayOneShot(crashSFX);
+                    isAbleToTransition = false;
+                }
                 break;
         }
     }

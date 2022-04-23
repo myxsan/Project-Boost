@@ -253,3 +253,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4e24477b46136478125c04baa59048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crashSFX: {fileID: 8300000, guid: faefee2e90388ae4dbe1f6c6afbb29a9, type: 3}
+  landingPadSFX: {fileID: 8300000, guid: 3adff5ffe7a1bc641a0e6475cdd55f69, type: 3}
