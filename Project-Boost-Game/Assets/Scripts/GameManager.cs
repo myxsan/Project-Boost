@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         
         FindObjectOfType<Movement>().enabled = false;
         GameObject.Find("Rocket").GetComponent<Rigidbody>().useGravity = false;
-        GameObject.Find("Rocket").GetComponent<AudioSource>().enabled = false;
+        //GameObject.Find("Rocket").GetComponent<AudioSource>().enabled = false;
     }
 
     void ResetScene()

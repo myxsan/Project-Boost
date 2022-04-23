@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class PlayerSFXController : MonoBehaviour
 {
+    [Header("Audios")]
+    [SerializeField] AudioClip mainEngine;
+    public AudioClip crashToObstacle;
+    public AudioClip landingPad;
     AudioSource audioSource;
     void Awake()
     {
@@ -21,7 +25,7 @@ public class PlayerSFXController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && !audioSource.isPlaying)
         {
-            audioSource.Play();
+            audioSource.PlayOneShot(mainEngine);
         }
         if(Input.GetKeyUp(KeyCode.Space) && audioSource.isPlaying)
         {

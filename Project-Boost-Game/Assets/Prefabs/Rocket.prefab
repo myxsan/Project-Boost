@@ -140,7 +140,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6188cef28713bab4085af0664c4205e8, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -238,6 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772c9ac63489b3e45b8d13d65d192b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainEngine: {fileID: 8300000, guid: 6188cef28713bab4085af0664c4205e8, type: 3}
+  crashToObstacle: {fileID: 8300000, guid: faefee2e90388ae4dbe1f6c6afbb29a9, type: 3}
+  landingPad: {fileID: 8300000, guid: 3adff5ffe7a1bc641a0e6475cdd55f69, type: 3}
 --- !u!114 &1180882605
 MonoBehaviour:
   m_ObjectHideFlags: 0

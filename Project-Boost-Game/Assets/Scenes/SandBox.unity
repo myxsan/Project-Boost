@@ -518,8 +518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174aff5247f6ed24982b0bf2d309878b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelResetDelay: 0.7
-  levelLoadDelay: 0
+  levelResetDelay: 2.5
+  levelLoadDelay: 2.5
 --- !u!4 &2098075547
 Transform:
   m_ObjectHideFlags: 0
@@ -541,10 +541,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1180882605, guid: 8863e9aef0afddd4a8ddddc16170d3c2, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 2098075546}
     - target: {fileID: 5224584449933936372, guid: 8863e9aef0afddd4a8ddddc16170d3c2, type: 3}
       propertyPath: m_RootOrder
       value: 5
