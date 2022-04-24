@@ -13,7 +13,7 @@ public class CollisionHandler : MonoBehaviour
     AudioSource audioSource;
 
 
-    bool isAbleToTransition = true;
+    [HideInInspector] public bool isAbleToTransition = true;
 
     private void Awake() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();

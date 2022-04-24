@@ -23,13 +23,17 @@ public class PlayerSFXController : MonoBehaviour
 
     private void AudioControl()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && !audioSource.isPlaying)
+        if(GetComponent<CollisionHandler>().isAbleToTransition)
         {
-            audioSource.PlayOneShot(mainEngine);
+            if(Input.GetKeyDown(KeyCode.Space) && !audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(mainEngine);
+            }
+              
         }
         if(Input.GetKeyUp(KeyCode.Space) && audioSource.isPlaying)
         {
             audioSource.Stop();
-        }
+        } 
     }
 }
