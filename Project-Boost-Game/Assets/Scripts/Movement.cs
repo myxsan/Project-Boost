@@ -8,6 +8,9 @@ public class Movement : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float thrustPower;
     [SerializeField] float rotateAmount;
+    [SerializeField] ParticleSystem leftSideParticle;
+    [SerializeField] ParticleSystem rightSideParticle;
+    [SerializeField] ParticleSystem boosterParticle;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,6 +31,15 @@ public class Movement : MonoBehaviour
         {
             Debug.Log("Thrust");
             rb.AddRelativeForce(Vector3.up * thrustPower * Time.deltaTime);
+            if(!boosterParticle.isPlaying){
+                boosterParticle.Play();
+            }
+        }
+        else
+        {
+            if(boosterParticle.isPlaying){
+                boosterParticle.Stop();
+            }
         }
     }
     private void ProcessRotation()
@@ -35,13 +47,30 @@ public class Movement : MonoBehaviour
         if(Input.GetKey(KeyCode.A))
         {
             ApplyRotation(rotateAmount);
+            
+            if(!rightSideParticle.isPlaying){
+                rightSideParticle.Play();
+            }
+            leftSideParticle.Stop();
 
             Debug.Log("Left Rotated");
         }
+
         else if(Input.GetKey(KeyCode.D))
         {
             ApplyRotation(-rotateAmount);
+            
+            if(!leftSideParticle.isPlaying){
+              leftSideParticle.Play();
+            }
+            rightSideParticle.Stop();
+
             Debug.Log("Right Rotated");
+        }
+        else
+        {
+            leftSideParticle.Stop();
+            rightSideParticle.Stop();
         }
     }
 
