@@ -9,6 +9,8 @@ public class CollisionHandler : MonoBehaviour
     [Header("Audio")]
     [SerializeField] AudioClip crashSFX;
     [SerializeField] AudioClip landingPadSFX;
+    [SerializeField] ParticleSystem crashParticle;
+    [SerializeField] ParticleSystem landingPadParticle;
     PlayerSFXController playerSFXController;
     AudioSource audioSource;
 
@@ -34,6 +36,7 @@ public class CollisionHandler : MonoBehaviour
                 if(isAbleToTransition)
                 {
                     gameManager.LoadNextLevel();
+                    landingPadParticle.Play();
                     audioSource.PlayOneShot(landingPadSFX);
                     isAbleToTransition = false;
                 }
@@ -51,6 +54,7 @@ public class CollisionHandler : MonoBehaviour
                     gameManager.StartResetLevel();
                     audioSource.PlayOneShot(crashSFX);
                     isAbleToTransition = false;
+                    crashParticle.Play();
                 }
                 break;
         }
