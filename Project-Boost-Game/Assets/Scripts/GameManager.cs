@@ -11,9 +11,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] float levelResetDelay = 0.7f;
     [SerializeField] float levelLoadDelay = 0.2f;
 
-
+    List<GameObject> singletonPattern = new List<GameObject>();
     private void Awake() {
-        DontDestroyOnLoad(transform.gameObject);
+        singletonPattern.Add(this.gameObject);
+        if(singletonPattern.Count > 1){
+            Destroy(this.gameObject);
+        }
+        else if(singletonPattern.Count <= 1){
+            DontDestroyOnLoad(transform.gameObject);
+        }
         movement = GameObject.Find("Rocket").GetComponent<Movement>();
     }
     public void StartResetLevel()
