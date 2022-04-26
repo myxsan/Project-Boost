@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
         }
         movement = GameObject.Find("Rocket").GetComponent<Movement>();
     }
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            Application.Quit();
+        }
+    }
     public void StartResetLevel()
     {
         Invoke("ResetLevel",levelResetDelay);
